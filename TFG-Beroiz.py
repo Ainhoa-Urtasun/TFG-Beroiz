@@ -22,7 +22,7 @@ data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
 mydata = mydata[mydata['prof_pos']=='Executives']
 mydata = mydata[['geo','time',0]]
-mydata.rename(columns={0:'Percentage'},inplace=True)
+mydata.rename(columns={0:'percentage'},inplace=True)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 
 mydata1 = mydata[mydata.time=='2022']
@@ -38,6 +38,6 @@ europe = geopandas.clip(world,polygon)
 mydata1 = mydata1.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
-mydata.plot(column='Percentage',alpha=0.8,cmap='viridis',ax=ax,legend=True)
+mydata.plot(column='percentage',alpha=0.8,cmap='viridis',ax=ax,legend=True)
 ax.set_title('Porcentage de mujeres en puestos de dirección en 2022 (source: Eurostat)')
 ax.axis('off')
